@@ -1,6 +1,25 @@
+# Python
 __pycache__/
 *.pyc
+*.pyo
+
+# Virtual Environment
 venv/
-.env
-.idea/
+
+# VS Code
 .vscode/
+
+# IntelliJ
+.idea/
+
+# Python Environment
+.env
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Linux
+*.swp
