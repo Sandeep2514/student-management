@@ -60,7 +60,7 @@ pipeline {
            	      withSonarQubeEnv('SonarQube') {
                           sh """
                 	  ${scannerHome}/bin/sonar-scanner \
-                  	  -Dsonar.projectKey=student-management \
+                  	  -Dsonar.projectKey=Student-Management \
                		  -Dsonar.projectName=Student-Management \
                 	  -Dsonar.sources=. \
                 	  -Dsonar.sourceEncoding=UTF-8
