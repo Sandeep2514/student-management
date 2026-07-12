@@ -51,7 +51,34 @@ pipeline {
         	'''
    		 }
 	}
+	
+	stage('SonarQube Analysis') {
+    	    steps {
+        	script {
+            	      def scannerHome = tool 'SonarScanner'
+
+           	      withSonarQubeEnv('SonarQube') {
+                          sh """
+                	  ${scannerHome}/bin/sonar-scanner \
+                  	  -Dsonar.projectKey=student-management \
+               		  -Dsonar.projectName=Student-Management \
+                	  -Dsonar.sources=. \
+                	  -Dsonar.sourceEncoding=UTF-8
+                	  """
+            	   }
+        	 }
+    	      }
+	  }
    	
+	stage('Quality Gate') {
+ 	   steps {
+        	timeout(time: 5, unit: 'MINUTES') {
+            	waitForQualityGate abortPipeline: true
+       	   }
+    	  }
+	 }
+
+	
 
         stage('Verify Project Structure') {
             steps {
