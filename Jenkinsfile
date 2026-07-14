@@ -78,7 +78,51 @@ pipeline {
     	  }
 	 }
 
-	
+	stage('Build Student Service Image') {
+    	  steps {
+                dir('student-service') {
+            	sh '''
+            	   docker build -t student-service:v1 .
+            	'''
+        	}
+    	    }
+	}	
+
+	stage('Build Course Service Image') {
+    	 steps {
+        	dir('course-service') {
+            	sh '''
+            	  docker build -t course-service:v1 .
+            	'''
+        	}
+    	    }
+	}	
+
+	stage('Build Result Service Image') {
+    	 steps {
+        	dir('result-service') {
+            	sh '''
+            	 docker build -t result-service:v1 .
+            	'''
+        	}
+    	    }
+	}
+
+	stage('Build API Gateway Image') {
+    	steps {
+        	dir('api-gateway') {
+            	sh '''
+            	 docker build -t api-gateway:v1 .
+            	'''
+        	}
+    	    }
+	}
+
+	stage('Verify Docker Images') {
+    	steps {
+        	sh 'docker images'
+    	    }
+	}
 
         stage('Verify Project Structure') {
             steps {
