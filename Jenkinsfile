@@ -59,12 +59,14 @@ pipeline {
 
            	      withSonarQubeEnv('SonarQube') {
                           sh """
-                	  ${scannerHome}/bin/sonar-scanner \
-                  	  -Dsonar.projectKey=Student-Management \
-               		  -Dsonar.projectName=Student-Management \
-                	  -Dsonar.sources=. \
-                	  -Dsonar.sourceEncoding=UTF-8
-                	  """
+			  ${scannerHome}/bin/sonar-scanner \
+			  -Dsonar.projectKey=Student-Management \
+			  -Dsonar.projectName=Student-Management \
+			  -Dsonar.sources=. \
+    			  -Dsonar.sourceEncoding=UTF-8 \
+			  -Dsonar.exclusions=venv/**,.git/**,__pycache__/** \
+ 			  -Dsonar.python.version=3.14
+ 			  """
             	   }
         	 }
     	      }
